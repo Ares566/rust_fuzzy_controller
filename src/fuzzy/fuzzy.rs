@@ -1,7 +1,9 @@
 use crate::fuzzy::rule;
+use heapless::Vec;
+use num_traits::*;
 
 pub struct Fuzzy {
-    pub rules: Vec<rule::Rule>,
+    pub rules: Vec<rule::Rule, 10>,
 }
 pub fn new_fuzzy() -> Fuzzy {
     Fuzzy { rules: Vec::new() }
@@ -10,12 +12,12 @@ impl Fuzzy {
     pub fn add_rule(
         &mut self,
         ferr: f32,
-        op: Box<dyn super::operator::Operator>,
+        op: &'static dyn  super::operator::Operator,
         fderr: f32,
         fthen: f32,
     ) {
         let new_rule = rule::new_rule(ferr, op, fderr, fthen);
-        self.rules.push(new_rule);
+        _ = self.rules.push(new_rule);
     }
 
     

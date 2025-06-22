@@ -22,11 +22,11 @@ pub fn new_fuzzy_controller() -> FuzzyController{
 
    
     // all is ok
-	lfc_fuzzy.add_rule(F_NO, Box::new(OpAnd{}), F_NO, F_NO);
+	lfc_fuzzy.add_rule(F_NO, &OpAnd{}, F_NO, F_NO);
 
     // the last impact does not bring results
-    lfc_fuzzy.add_rule(F_VLN, Box::new(OpOr{}), F_VLN, F_VLP);
-    lfc_fuzzy.add_rule(F_VLP, Box::new(OpOr{}), F_VLP, F_VLN);
+    lfc_fuzzy.add_rule(F_VLN, &OpOr{}, F_VLN, F_VLP);
+    lfc_fuzzy.add_rule(F_VLP, &OpOr{}, F_VLP, F_VLN);
 
     /*// we have positive effects from last impact
 	lfcFuzzy.addRule(F_SN, new(F_and), F_SN, F_SP)
